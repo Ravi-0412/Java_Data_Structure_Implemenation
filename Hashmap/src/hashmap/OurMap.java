@@ -1,4 +1,4 @@
-  package hashmap;
+package hashmap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,18 +142,23 @@ public class OurMap<k, v> {
 			this.key = key;
 			this.value = value;
 		}
-	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		// write proper implementation for wrapper and custom object
-		return super.equals(obj);
-	}
-	
-	@Override
-	public int hashCode() {
-		// write proper implementation for wrapper and custom object
-		return super.hashCode();
+		@Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            MapNode<?, ?> mapNode = (MapNode<?, ?>) obj;
+            return key.equals(mapNode.key) && value.equals(mapNode.value);
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + (key == null ? 0 : key.hashCode());
+            result = prime * result + (value == null ? 0 : value.hashCode());
+            return result;
+        }
 	}
 
 }
